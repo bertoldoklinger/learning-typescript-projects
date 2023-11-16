@@ -1,5 +1,22 @@
-// Put your checkEmotion and speak functions here! ✨
-// See ./original.js for their older JavaScript code.
+async function checkEmotion(knownEmotions, emotion) {
+  // Simulate database processing time by waiting a second...
+  setTimeout(() => {
+    knownEmotions.has(emotion)
+  }, 1000);
+}
+
+function speak(knownEmotions, newEmotion, phrase, callback) {
+  checkEmotion(knownEmotions, newEmotion, (hasEmotion) => {
+    if (hasEmotion) {
+      callback(`"${phrase}" (${newEmotion})`);
+    } else {
+      callback(
+        undefined,
+        new Error(`Does not compute. I do not understand ${newEmotion}.`)
+      );
+    }
+  });
+}
 
 module.exports.checkEmotion = checkEmotion;
 module.exports.speak = speak;
